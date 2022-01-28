@@ -1,0 +1,47 @@
+﻿<Window x:Class="inventory.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:inventory"
+        mc:Ignorable="d"
+        Title="Inventory" Height="190" Width="290">
+    <Grid Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0">Quick Add</Label>
+        <ListBox Grid.Row="1" x:Name="log" />
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0">Item</Label>
+            <Label Grid.Column="0" Grid.Row="1">Type</Label>
+            <Label Grid.Column="0" Grid.Row="2">Quantity</Label>
+
+            <TextBox x:Name="item" Grid.Column="1" Grid.Row="0" />
+            <TextBox x:Name="type" Grid.Column="1" Grid.Row="1" />
+            <TextBox x:Name="quantity" Grid.Column="1" Grid.Row="2" />
+            <Button x:Name="submit" Grid.Column="1" Grid.Row="3" Click="btn_QuickAdd">Add Item</Button>
+        </Grid>
+    </Grid>
+</Window>
