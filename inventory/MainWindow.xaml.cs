@@ -157,6 +157,7 @@ namespace inventory
                                         Int32.Parse(entryTime[0]))
                                 {
                                     // compare minutes
+                                    entryTime[1] = entryTime[1].Substring(0, entryTime[1].Length - 3);
                                     if (Int32.Parse(compTime[1]) <=
                                             Int32.Parse(entryTime[1]))
                                     {
