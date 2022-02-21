@@ -38,10 +38,10 @@
             <Label Grid.Column="0" Grid.Row="1">Type</Label>
             <Label Grid.Column="0" Grid.Row="2">Quantity</Label>
 
-            <TextBox x:Name="item" Grid.Column="1" Grid.Row="0" />
-            <TextBox x:Name="type" Grid.Column="1" Grid.Row="1" />
-            <TextBox x:Name="quantity" Grid.Column="1" Grid.Row="2" />
-            <Button x:Name="submit" Grid.Column="1" Grid.Row="3" Click="btn_QuickAdd">Add Item</Button>
+            <TextBox x:Name="item_field" Grid.Column="1" Grid.Row="0" />
+            <TextBox x:Name="type_field" Grid.Column="1" Grid.Row="1" />
+            <TextBox x:Name="quantity_field" Grid.Column="1" Grid.Row="2" />
+            <Button x:Name="submit" Grid.Column="1" Grid.Row="3" Click="Item">Add Item</Button>
         </Grid>
     </Grid>
 </Window>

@@ -23,24 +23,33 @@ namespace inventory
             InitializeComponent();
         }
 
-        // simple function to test knowledge on
-        // event handlers in the GUI
-        private void btn_QuickAdd(object sender, RoutedEventArgs e)
+        // class constructor -- called on submit click
+        public void Item(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(item.Text) && !log.Items.Contains(item.Text) &&
-                !string.IsNullOrWhiteSpace(type.Text) && !string.IsNullOrWhiteSpace(quantity.Text))
+            // check if all entry fields are filled
+            if (!string.IsNullOrWhiteSpace(item_field.Text) && !log.Items.Contains(item_field.Text) &&
+                !string.IsNullOrWhiteSpace(type_field.Text) && !string.IsNullOrWhiteSpace(quantity_field.Text))
             {
-                // get current date
+                // get and log current date and time
                 DateTime currentDate = DateTime.Now;
+                date = currentDate.ToString("d");
+                time = currentDate.ToString("t");
 
-                log.Items.Add(item.Text + "," + type.Text + "," + quantity.Text);
-                QuickAdd(currentDate.ToString("d"), currentDate.ToString("t"),
-                            item.Text, type.Text, quantity.Text);
+                // pull and log item, type, and quantity
+                item = item_field.Text;
+                type = type_field.Text;
+                quantity = quantity_field.Text;
 
-                item.Clear();
-                type.Clear();
-                quantity.Clear();
+                // display item log and clear fields
+                log.Items.Add(item + "," + type + "," + quantity);
+                item_field.Clear();
+                type_field.Clear();
+                quantity_field.Clear();
+
+                // call QuickAdd function
+                QuickAdd();
             }
+            // TODO -- error control to be added later
         }
 
         private static void CheckForFile(string name)
@@ -51,9 +60,8 @@ namespace inventory
                 File.Create(name).Close();
         }
 
-        private static void QuickAdd(string date, string time, string item, string type, string quantity)
+        private static void QuickAdd()
         {
-            // read through file to see if item is already in file
             int index = 0;
             int id = 1;
             string previousCatagory = "null";   // last read item's catagory
@@ -79,7 +87,7 @@ namespace inventory
                 if (String.Compare(bits[5], item, true) == 0 &&
                     String.Compare(bits[4], type, true) == 0)
                 {
-                    addLine = UpdateQuantity(lines, item, type, quantity, date, time);
+                    addLine = UpdateQuantity(lines);
                     update = true;
                     break;
                 }
@@ -120,8 +128,7 @@ namespace inventory
             return;                             // end function
         }
 
-        private static string UpdateQuantity(string[] lines, string item, string type, string quantity,
-                                                string date, string time)
+        private static string UpdateQuantity(string[] lines)
         {
             int index = 0;
             int entry = 0;
@@ -183,5 +190,11 @@ namespace inventory
                                 bits[5] + ',' + updatedQuantity.ToString();
             return addLine;
         }
+
+        private static string date;
+        private static string time;
+        private static string item;
+        private static string type;
+        private static string quantity;
     }
 }
